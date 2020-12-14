@@ -14,4 +14,4 @@ Registration / Login / Logout forms built with PHP / MySQL / HTML / CSS
 7. **(Optional) Delete unnecessary files.** Delete the following files:
     - '_countries.php_' from '_web_server_root/inclusions/_'
     - '_db_table_creator.php_' from '_web_server_root/inclusions/_'
-8. **Start using.** Open a new tab and enter the following adress: '_your_web_server_adress_'. Click the '_Log in_' button. After that click the '_Register_' or '_Log in_' button and folow the instructions.
+8. **Start using.** Open a new tab and enter the following adress: '_your_web_server_adress_'. Click the '_Log in_' button. After that click the '_Register_' or '_Log in_' button and follow the instructions.
