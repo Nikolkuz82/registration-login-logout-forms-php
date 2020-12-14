@@ -1,6 +1,8 @@
 # registration-login-logout-forms-php
 Registration / Login / Logout forms built with PHP / MySQL / HTML / CSS
 
+---
+
 ## How to use
 1. **Copy all files except '_.gitignore_' and '_README.md_' from the repository to the root folder of the web-server (e.g. 'www').** **Note:** _do not change the location of files in directories._
 2. **Consider whether you want to store unhashed user passwords in the database (default is to store).** To customize it, change the '_sv_unhashed_pass_' key value: _true_ - option is **enabled**, _false_ - option is **disabled** (**default** is '_true_'). If you just want to see how the project works, you can leave this option enabled. If the option was enabled in this step (before step 5), it can be disabled during project execution (enabling this option after step 5 will not produce the desired result). **Note:** _do not put 'true' and 'false' inside the quotes (correct: true, false; incorrect: 'true', 'false')._ 
