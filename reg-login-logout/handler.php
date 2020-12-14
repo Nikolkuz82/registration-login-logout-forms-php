@@ -144,6 +144,7 @@ function col_exists_in_db_tbl($table_name, $col_name){ // Checks if a column exi
 }
 
 function add_new_user_to_database(){
+	$add_error = false; // Indicates an error occurred while adding a new user to the database
 	$safe_post_fields_arr = get_safe_post_fields();
 	$name = $safe_post_fields_arr['name'];
 	$email = $safe_post_fields_arr['email'];
@@ -177,16 +178,27 @@ function add_new_user_to_database(){
 																						   `country`='".$country."',
 																						   `timestamp`='".$timestamp."'";
 			}
-		mysqli_query($GLOBALS['db_link'], $db_query);
-								   
-		// Defines a new id
-		$id = mysqli_insert_id($GLOBALS['db_link']); // Returns the auto generated id from the database table used in the latest query
-		$sql_res = mysqli_query($GLOBALS['db_link'], "SELECT * FROM `".$GLOBALS['config']['db_tbls']['db_tbl_users']."` WHERE `id`='".$id."'"); // Gets a value from a database table
-		$usr_data_arr = mysqli_fetch_assoc($sql_res);	// Sets an array of user data		
-		$_SESSION['id'] = $usr_data_arr['id']; // Stores the id in the session
-		$id = $_SESSION['id']; // Assigns the id to $id variable
-		set_message("You are registered successfully!"); // Sets a registration message
+		$sql_res = mysqli_query($GLOBALS['db_link'], $db_query);
+		if($sql_res != false ){	// Checks if the request was successful					   
+			// Defines a new id
+			$id = mysqli_insert_id($GLOBALS['db_link']); // Returns the auto generated id from the database table used in the latest query
+			$sql_res = mysqli_query($GLOBALS['db_link'], "SELECT * FROM `".$GLOBALS['config']['db_tbls']['db_tbl_users']."` WHERE `id`='".$id."'"); // Gets a value from a database table
+			if($sql_res != false ){	// Checks if the request was successful
+				$usr_data_arr = mysqli_fetch_assoc($sql_res);	// Sets an array of user data		
+				$_SESSION['id'] = $usr_data_arr['id']; // Stores the id in the session
+				$id = $_SESSION['id']; // Assigns the id to $id variable
+			}
+			else{
+				$add_error = true;
+			}
+		}
+		else{
+			$add_error = true;
+		}
 	}
+	if($add_error === false){
+		set_message("You are registered successfully!"); // Sets a registration message
+	}		
 	else{
 		set_message("Oops! Something went wrong ... Try again."); // Sets a registration message
 	}
